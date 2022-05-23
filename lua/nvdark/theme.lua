@@ -2,7 +2,7 @@
 local M = {}
 local c = require('nvdark.palette')
 local style = require('nvdark.style')
--- local config = require('nvdark.config').options
+local config = require('nvdark.config').options
 
 -- terminal colors support
 vim.g.terminal_color_0  = c.bg
@@ -230,27 +230,35 @@ M.lsp = {
 
 -- see :h diagnostic-highlights
 M.diagnostic = {
-    DiagnosticError          = { fg = c.red },
-    DiagnosticWarn           = { fg = c.yellow },
-    DiagnosticInfo           = { fg = c.blue },
-    DiagnosticHint           = { fg = c.blue },
+    DiagnosticError            = { fg = c.red },
+    DiagnosticWarn             = { fg = c.yellow },
+    DiagnosticInfo             = { fg = c.blue },
+    DiagnosticHint             = { fg = c.blue },
     -- DiagnosticFloatingError    = { fg = c.red },
     -- DiagnosticFloatingWarn     = { fg = c.yellow },
     -- DiagnosticFloatingInfo     = { fg = c.blue },
     -- DiagnosticFloatingHint     = { fg = c.blue },
-    -- DiagnosticVirtualTextError = { fg = c.red },
-    -- DiagnosticVirtualTextWarn  = { fg = c.yellow },
-    -- DiagnosticVirtualTextInfo  = { fg = c.blue },
-    -- DiagnosticVirtualTextHint  = { fg = c.blue },
-    DiagnosticUnderlineError = { style = 'undercurl', sp = c.red },
-    DiagnosticUnderlineWarn  = { style = 'undercurl', sp = c.yellow },
-    DiagnosticUnderlineInfo  = { style = 'undercurl', sp = c.blue },
-    DiagnosticUnderlineHint  = { style = 'undercurl', sp = c.blue },
+    DiagnosticVirtualTextError = { 'NonText' },
+    DiagnosticVirtualTextWarn  = { 'NonText' },
+    DiagnosticVirtualTextInfo  = { 'NonText' },
+    DiagnosticVirtualTextHint  = { 'NonText' },
+    DiagnosticUnderlineError   = { style = 'undercurl', sp = c.red },
+    DiagnosticUnderlineWarn    = { style = 'undercurl', sp = c.yellow },
+    DiagnosticUnderlineInfo    = { style = 'undercurl', sp = c.blue },
+    DiagnosticUnderlineHint    = { style = 'undercurl', sp = c.blue },
     -- DiagnosticSignError      = { fg = c.red },
     -- DiagnosticSignWarn       = { fg = c.yellow },
     -- DiagnosticSignInfo       = { fg = c.blue },
     -- DiagnosticSignHint       = { fg = c.blue },
 }
+
+
+if config.diagnostic.colorful_virtual_text then
+    M.diagnostic.DiagnosticVirtualTextError = { fg = c.red }
+    M.diagnostic.DiagnosticVirtualTextWarn  = { fg = c.yellow }
+    M.diagnostic.DiagnosticVirtualTextInfo  = { fg = c.blue }
+    M.diagnostic.DiagnosticVirtualTextHint  = { fg = c.blue }
+end
 
 --
 -- language specific
@@ -343,8 +351,8 @@ M.telescope = {
     TelescopeNormal         = { fg = c.fg, bg = c.leftDark },
     -- TelescopeBorder         = { fg = c.gray },
     TelescopePromptPrefix   = { fg = c.lightBlue },
-    TelescopePromptNormal   = { fg = c.fg, bg = c.cursorDarkDark },
-    TelescopePromptBorder   = { fg = c.cursorDarkDark, bg = c.cursorDarkDark },
+    TelescopePromptNormal   = { fg = c.fg, bg = c.leftMid },
+    TelescopePromptBorder   = { fg = c.leftMid, bg = c.leftMid },
     TelescopePromptTitle    = { fg = c.mediumBlue },
     TelescopePromptCounter  = { fg = c.gray },
     TelescopeSelection      = { fg = c.fg, bg = c.popupHighlightBlue },
@@ -404,7 +412,7 @@ M.gitsigns = {
 
 -- folke/which-key.nvim
 M.whichkey = {
-    WhichKey          = { fg = c.red },
+    -- WhichKey          = { fg = c.mediumBlue },
     WhichKeySeperator = { fg = c.green },
     WhichKeyGroup     = { fg = c.pink },
     WhichKeyDesc      = { fg = c.blue },
@@ -445,18 +453,18 @@ M.indentline = {
     IndentBlanklineSpaceCharBlankline = { fg = c.context, style = 'nocombine' },
 }
 
--- TODO: below
 -- p00f/nvim-ts-rainbow
--- M.rainbow = {
--- rainbowcol1 = { 'Red' },
--- rainbowcol2 = { 'Yellow' },
--- rainbowcol3 = { 'Green' },
--- rainbowcol4 = { 'Cyan' },
--- rainbowcol5 = { 'Blue' },
--- rainbowcol6 = { 'Purple' },
--- rainbowcol7 = { 'Green' },
--- }
+M.rainbow = {
+    rainbowcol1 = { fg = c.orange },
+    rainbowcol2 = { fg = c.yellow },
+    rainbowcol3 = { fg = c.blue },
+    rainbowcol4 = { fg = c.pink },
+    rainbowcol5 = { fg = c.blueGreen },
+    rainbowcol6 = { fg = c.violet },
+    rainbowcol7 = { fg = c.gray },
+}
 
+-- TODO: below
 -- M.bufferline = {
 
 -- }

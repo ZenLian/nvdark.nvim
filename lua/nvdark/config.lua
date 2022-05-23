@@ -4,7 +4,7 @@ local config = {}
 config.options = {
     -- turn italic on/off
     italic = {
-        enable = true, -- set to false will disable all italics below
+        enable = false, -- set to false will disable all italics below
         comment = true,
         todo = false,
         markdown = true,
@@ -12,7 +12,7 @@ config.options = {
     },
     diagnostic = {
         -- true to enable diagnostic virtual text color
-        colored_virtual_text = false,
+        colorful_virtual_text = false,
     },
     -- TODO: not supported yet
     better_performence = false,
