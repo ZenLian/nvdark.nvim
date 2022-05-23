@@ -4,10 +4,12 @@ A Neovim's port of VSCode dark+ colorscheme written in lua.
 
 ## 🔌Supported plugins
 
-- nvim-cmp
-- NvimTree
+- tree-sitter
 - Telescope
 - gitsigns.nvim
+- nvim-cmp
+- NvimTree
+- barbar.nvim
 - indentBlankLine
 - which-key.nvim
 - nvim-notify

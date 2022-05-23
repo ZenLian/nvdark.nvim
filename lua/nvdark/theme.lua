@@ -125,7 +125,7 @@ M.syntax = {
     Structure    = { fg = c.blue },
     Typedef      = { fg = c.blue },
 
-    Special        = { fg = c.yellowOrange },
+    Special        = { fg = c.blue },
     SpecialChar    = { fg = c.fg },
     Tag            = { fg = c.fg },
     Delimiter      = { fg = c.fg },
@@ -462,6 +462,48 @@ M.rainbow = {
     rainbowcol5 = { fg = c.blueGreen },
     rainbowcol6 = { fg = c.violet },
     rainbowcol7 = { fg = c.gray },
+}
+
+-- barbar.nvim
+local barbar = {
+    fg_target = c.red,
+    fg_current = c.fg,
+    fg_visible = c.fg,
+    fg_inactive = c.gray,
+
+    fg_modified = c.orange,
+    fg_special = c.blue,
+    fg_subtle = c.gray,
+
+    bg_fill = c.tabOutside,
+    bg_current = c.tabCurrent,
+    bg_visible = c.tabOther,
+    bg_inactive = c.tabOther,
+}
+
+M.barbar = {
+    BufferCurrent        = { fg = barbar.fg_current, bg = barbar.bg_current },
+    BufferCurrentIndex   = { fg = barbar.fg_special, bg = barbar.bg_current },
+    BufferCurrentMod     = { fg = barbar.fg_modified, bg = barbar.bg_current },
+    BufferCurrentSign    = { fg = barbar.fg_special, bg = barbar.bg_current },
+    BufferCurrentTarget  = { fg = barbar.fg_target, bg = barbar.bg_current, style = 'bold' },
+    BufferVisible        = { fg = barbar.fg_visible, bg = barbar.bg_visible },
+    BufferVisibleIndex   = { fg = barbar.fg_visible, bg = barbar.bg_visible },
+    BufferVisibleMod     = { fg = barbar.fg_modified, bg = barbar.bg_visible },
+    BufferVisibleSign    = { fg = barbar.fg_visible, bg = barbar.bg_visible },
+    BufferVisibleTarget  = { fg = barbar.fg_target, bg = barbar.bg_visible, style = 'bold' },
+    BufferInactive       = { fg = barbar.fg_inactive, bg = barbar.bg_inactive },
+    BufferInactiveIndex  = { fg = barbar.fg_subtle, bg = barbar.bg_inactive },
+    BufferInactiveMod    = { fg = barbar.fg_modified, bg = barbar.bg_inactive },
+    BufferInactiveSign   = { fg = barbar.fg_subtle, bg = barbar.bg_inactive },
+    BufferInactiveTarget = { fg = barbar.fg_target, bg = barbar.bg_inactive, style = 'bold' },
+    BufferTabpages       = { fg = barbar.fg_special, bg = barbar.bg_fill, style = 'bold' },
+    BufferTabpageFill    = { fg = barbar.fg_inactive, bg = barbar.bg_fill },
+
+    BufferCurrentIcon = { 'BufferCurrent' },
+    BufferVisibleIcon = { 'BufferVisible' },
+    BufferInactiveIcon = { 'BufferInactive' },
+    BufferOffset = { 'BufferTabpageFill' },
 }
 
 -- TODO: below
