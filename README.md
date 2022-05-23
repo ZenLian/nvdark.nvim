@@ -2,7 +2,7 @@
 
 A Neovim's port of VSCode dark+ colorscheme written in lua.
 
-## 🔌Supported plugins
+## 🔥Supported plugins
 
 - tree-sitter
 - Telescope
@@ -15,6 +15,13 @@ A Neovim's port of VSCode dark+ colorscheme written in lua.
 - nvim-notify
 - nvim-ts-rainbow
 
-## 🚧TODO
+## ✅ TODO
 
+- [ ] windline theme
 - [ ] BufferLine
+
+## ❤ Credits
+
+- [vim-code-dark](https://github.com/tomasiser/vim-code-dark) 
+- [vscode.nvim](https://github.com/Mofiqul/vscode.nvim)
+
