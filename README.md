@@ -2,6 +2,10 @@
 
 A Neovim's port of VSCode dark+ colorscheme written in lua.
 
+![screenshot](./assets/screenshot.png) 
+
+![telescope](./assets/telescope.png)
+
 ## 🔥Supported plugins
 
 - tree-sitter
