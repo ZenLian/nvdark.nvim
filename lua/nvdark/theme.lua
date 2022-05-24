@@ -473,6 +473,17 @@ M.rainbow = {
     rainbowcol7 = { fg = c.gray },
 }
 
+M.neogit = {
+    NeogitNotificationInfo     = { fg = c.green },
+    NeogitNotificationWarning  = { fg = c.yellow },
+    NeogitNotificationError    = { fg = c.red },
+    NeogitDiffAddHighlight     = { 'DiffAdd' },
+    NeogitDiffDeleteHighlight  = { 'DiffDelete' },
+    NeogitDiffContextHighlight = { fg = c.fg, bg = c.popupHighlightGray }, --guibg=#333333 guifg=#b2b2b2
+    NeogitHunkHeader           = { fg = c.fg, bg = c.context }, --guifg=#cccccc guibg=#404040
+    NeogitHunkHeaderHighlight  = { fg = c.fg, bg = c.contextCurrent }, --guifg=#cccccc guibg=#4d4d4d
+}
+
 -- barbar.nvim
 local barbar = {
     fg_target = c.red,
