@@ -463,13 +463,13 @@ M.indentline = {
 
 -- p00f/nvim-ts-rainbow
 M.rainbow = {
-  rainbowcol1 = { fg = c.orange },
-  rainbowcol2 = { fg = c.yellow },
-  rainbowcol3 = { fg = c.blue },
-  rainbowcol4 = { fg = c.pink },
-  rainbowcol5 = { fg = c.blueGreen },
-  rainbowcol6 = { fg = c.violet },
-  rainbowcol7 = { fg = c.gray },
+  rainbowcol1 = { fg = c.fg },
+  rainbowcol2 = { fg = c.lightRed },
+  rainbowcol3 = { fg = c.violet },
+  rainbowcol4 = { fg = c.blueGreen },
+  rainbowcol5 = { fg = c.yellow },
+  rainbowcol6 = { fg = c.orange },
+  rainbowcol7 = { fg = c.pink },
 }
 
 M.neogit = {
