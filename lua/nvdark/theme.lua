@@ -162,14 +162,14 @@ M.treesitter = {
   -- TSDefine             = { "Define" }, -- Preprocessor #define statements.
   -- TSError              = { "Error" }, -- Syntax/parser errors. This might highlight large sections of code while the user is typing still incomplete code, use a sensible highlight.
   -- TSException          = { "Exception" }, -- Exception related keywords: `try`, `except`, `finally` in Python.
-  TSField = { fg = c.lightBlue }, -- Object and struct fields.
+  TSField = { fg = c.blueGreen }, -- Object and struct fields.
   -- TSFloat              = { "Float" }, -- Floating-point number literals.
   -- TSFunction           = { "Function" }, -- Function calls and definitions.
   TSFuncBuiltin = { fg = c.yellow }, -- Built-in functions: `print` in Lua.
   TSFuncMacro = { fg = c.yellow }, -- Macro defined functions (calls and definitions): each `macro_rules` in Rust.
   -- TSInclude         = { "Include" }, -- File or module inclusion keywords: `#include` in C, `use` or `extern crate` in Rust.
-  TSKeyword = { fg = c.blue }, -- Keywords that don't fit into other categories.
-  TSKeywordFunction = { fg = c.blue }, -- Keywords used to define a function: `function` in Lua, `def` and `lambda` in Python.
+  TSKeyword = { 'Keyword' }, -- Keywords that don't fit into other categories.
+  -- TSKeywordFunction = { fg = c.blue }, -- Keywords used to define a function: `function` in Lua, `def` and `lambda` in Python.
   TSKeywordOperator = { fg = c.blue }, -- Unary and binary operators that are English words: `and`, `or` in Python; `sizeof` in C.
   -- TSKeywordReturn      = { "Keyword" }, -- Keywords like `return` and `yield`.
   TSLabel = { fg = c.lightBlue }, -- GOTO labels: `label:` in C, and `::label::` in Lua.
@@ -214,7 +214,7 @@ M.treesitter = {
   TSType = { fg = c.blueGreen }, -- Type (and class) definitions and annotations.
   TSTypeBuiltin = { fg = c.blue }, -- Built-in types: `i32` in Rust.
   TSVariable = { fg = c.lightBlue }, -- Variable names that don't fit into other categories.
-  TSVariableBuiltin = { fg = c.lightBlue }, -- Variable names defined by the language: `this` or `self` in Javascript.
+  TSVariableBuiltin = { fg = c.blue }, -- Variable names defined by the language: `this` or `self` in Javascript.
 }
 
 -- see :h lsp-highlight
