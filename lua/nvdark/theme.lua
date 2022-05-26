@@ -43,7 +43,7 @@ M.builtin = {
   Conceal = { fg = c.fg, bg = c.bg },
   ErrorMsg = { fg = c.red, bg = c.bg },
   VertSplit = { fg = c.splitDark, bg = c.bg }, -- Column separating vertically split window
-  -- WinSeparator = {} -- separators between window split
+  -- WinSeparator = { 'VertSplit' } -- separators between window split
   --
   Folded = { fg = c.leftLight, bg = c.leftDark },
   FoldColumn = { fg = c.lineNumber },
@@ -62,9 +62,9 @@ M.builtin = {
   -- MsgSeparator -- Separator for scrolled messages, `msgsep` flag of 'display
   MoreMsg = { fg = c.fg, bg = c.leftDark },
   NonText = { fg = c.lineNumber, bg = c.bg },
-  -- NormalFloat      = { fg = c.fg, bg = c.bg2 }, --TODO
-  -- NormalNC = { fg = palette.fg, bg = palette.bg0 },--TODO
-  -- FloatBorder      = { fg = c.grey, bg = c.bg2 }, --TODO
+  NormalFloat = { fg = c.popupFront, bg = c.popupBack },
+  -- NormalNC = { },
+  FloatBorder = { fg = c.blue, bg = c.popupBack },
   Pmenu = { fg = c.popupFront, bg = c.popupBack },
   PmenuSel = { fg = c.popupFront, bg = c.popupHighlightBlue },
   PmenuSbar = { bg = c.popupBack },
@@ -219,9 +219,9 @@ M.treesitter = {
 
 -- see :h lsp-highlight
 M.lsp = {
-  LspReferenceText = { bg = c.popupHighlightGray },
-  LspReferenceRead = { bg = c.popupHighlightGray },
-  LspReferenceWrite = { bg = c.popupHighlightGray },
+  LspReferenceText = { bg = c.leftMid },
+  LspReferenceRead = { bg = c.leftMid },
+  LspReferenceWrite = { bg = c.leftMid },
   -- LspCodeLens -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
   -- LspCodeLensSeparator -- Used to color the separator between two or more code lens.
   -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
@@ -464,7 +464,7 @@ M.indentline = {
 -- p00f/nvim-ts-rainbow
 M.rainbow = {
   rainbowcol1 = { fg = c.fg },
-  rainbowcol2 = { fg = c.lightRed },
+  rainbowcol2 = { fg = c.lightBlue },
   rainbowcol3 = { fg = c.violet },
   rainbowcol4 = { fg = c.blueGreen },
   rainbowcol5 = { fg = c.yellow },
@@ -481,6 +481,12 @@ M.neogit = {
   NeogitDiffContextHighlight = { fg = c.none, bg = c.popupHighlightGray }, --guibg=#333333 guifg=#b2b2b2
   NeogitHunkHeader = { fg = c.fg, bg = c.context }, --guifg=#cccccc guibg=#404040
   NeogitHunkHeaderHighlight = { fg = c.fg, bg = c.contextCurrent }, --guifg=#cccccc guibg=#4d4d4d
+}
+
+-- vim-illuminate
+M.illumate = {
+  illuminatedWord = { 'LspReferenceText' },
+  -- illuminatedCurWord = {}
 }
 
 -- barbar.nvim

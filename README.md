@@ -2,7 +2,7 @@
 
 A Neovim's port of VSCode dark+ colorscheme written in lua.
 
-![screenshot](./assets/screenshot.png) 
+![screenshot](./assets/screenshot.png)
 
 ![telescope](./assets/telescope.png)
 
@@ -18,6 +18,7 @@ A Neovim's port of VSCode dark+ colorscheme written in lua.
 - which-key.nvim
 - nvim-notify
 - nvim-ts-rainbow
+- vim-illuminate
 
 ## ✅ TODO
 
@@ -26,6 +27,5 @@ A Neovim's port of VSCode dark+ colorscheme written in lua.
 
 ## ❤ Credits
 
-- [vim-code-dark](https://github.com/tomasiser/vim-code-dark) 
+- [vim-code-dark](https://github.com/tomasiser/vim-code-dark)
 - [vscode.nvim](https://github.com/Mofiqul/vscode.nvim)
-
