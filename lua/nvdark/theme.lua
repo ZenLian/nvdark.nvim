@@ -531,6 +531,13 @@ M.barbar = {
   BufferOffset = { 'BufferTabpageFill' },
 }
 
+-- stevearc/aerial.nvim
+M.aerial = {
+  AerialLine = { bg = c.popupHighlightBlue },
+  AerialLineNC = { bg = c.popupHighlightGray },
+  AerialGuide = { fg = c.gray },
+}
+
 -- TODO: below
 -- M.bufferline = {
 
