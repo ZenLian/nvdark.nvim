@@ -62,8 +62,11 @@ local palette = {
   silver = '#C0C0C0',
 
   -- manually picked from vscode
+  -- statusline
   uiBlue = '#007ACC',
   uiGreen = '#16825D',
+  uiPurple = '#68217A',
+  -- tab
   tabFg = '#FFFFFF',
   tabInactiveFg = '#969696',
 }
