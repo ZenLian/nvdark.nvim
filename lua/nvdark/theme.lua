@@ -492,13 +492,13 @@ M.illumate = {
 -- barbar.nvim
 local barbar = {
   fg_target = c.red,
-  fg_current = c.fg,
+  fg_current = c.tabFg,
   fg_visible = c.fg,
-  fg_inactive = c.gray,
+  fg_inactive = c.tabInactiveFg,
 
   fg_modified = c.orange,
   fg_special = c.blue,
-  fg_subtle = c.gray,
+  fg_subtle = c.tabInactiveFg,
 
   bg_fill = c.tabOutside,
   bg_current = c.tabCurrent,

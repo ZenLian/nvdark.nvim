@@ -60,6 +60,12 @@ local palette = {
   yellow = '#DCDCAA',
   pink = '#C586C0',
   silver = '#C0C0C0',
+
+  -- manually picked from vscode
+  uiBlue = '#007ACC',
+  uiGreen = '#16825D',
+  tabFg = '#FFFFFF',
+  tabInactiveFg = '#969696',
 }
 
 return palette
