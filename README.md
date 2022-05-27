@@ -13,6 +13,7 @@ A Neovim's port of VSCode dark+ colorscheme written in lua.
 - gitsigns.nvim
 - nvim-cmp
 - NvimTree
+- BufferLine
 - barbar.nvim
 - indentBlankLine
 - which-key.nvim
@@ -23,7 +24,6 @@ A Neovim's port of VSCode dark+ colorscheme written in lua.
 ## ✅ TODO
 
 - [ ] windline theme
-- [ ] BufferLine
 
 ## ❤ Credits
 

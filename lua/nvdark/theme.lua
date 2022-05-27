@@ -45,8 +45,8 @@ local c = {
     fgVisible = p.fg,
     fgInactive = p.tabInactiveFg,
 
-    sign = p.blue,
-    indicator = p.red,
+    indicator = p.blue,
+    pick = p.red,
     modified = p.green,
 
     bgFill = p.tabOutside,
@@ -541,25 +541,79 @@ M.illumate = {
   -- illuminatedCurWord = {}
 }
 
+M.bufferline = {
+  BufferLineFill = { fg = c.tab.bgFill, bg = c.tab.bgFill },
+  BufferLineBackground = { fg = c.tab.fgInactive, bg = c.tab.bgInactive },
+  BufferLineBuffer = { fg = c.tab.fgInactive, bg = c.tab.bgInactive },
+  BufferLineCloseButton = { fg = c.tab.fgInactive, bg = c.tab.bgInactive },
+  BufferLineModified = { fg = c.tab.modified, bg = c.tab.bgInactive },
+  BufferLineDiagnostic = { 'BufferLineBuffer' },
+  BufferLineInfo = { 'BufferLineBuffer' },
+  BufferLineInfoDiagnostic = { 'BufferLineBuffer' },
+  BufferLineWarning = { 'BufferLineBuffer' },
+  BufferLineWarningDiagnostic = { 'BufferLineBuffer' },
+  BufferLineError = { 'BufferLineBuffer' },
+  BufferLineErrorDiagnostic = { 'BufferLineBuffer' },
+  BufferLineDuplicate = { fg = c.tab.fgInactive, bg = c.tab.bgInactive, style = 'italic' },
+  BufferLineSeparator = { fg = c.tab.bgFill, bg = c.tab.bgInactive },
+  BufferLinePick = { fg = c.tab.pick, bg = c.tab.bgInactive },
+
+  -- visible
+  BufferLineBufferVisible = { fg = c.tab.fgVisible, bg = c.tab.bgVisible },
+  BufferLineCloseButtonVisible = { fg = c.tab.fgVisible, bg = c.tab.bgVisible },
+  BufferLineModifiedVisible = { fg = c.tab.modified, bg = c.tab.bgVisible },
+  BufferLineDiagnosticVisible = { 'BufferLineBufferVisible' },
+  BufferLineInfoVisible = { 'BufferLineBufferVisible' },
+  BufferLineInfoDiagnosticVisible = { 'BufferLineBufferVisible' },
+  BufferLineWarningVisible = { 'BufferLineBufferVisible' },
+  BufferLineWarningDiagnosticVisible = { 'BufferLineBufferVisible' },
+  BufferLineErrorVisible = { 'BufferLineBufferVisible' },
+  BufferLineErrorDiagnosticVisible = { 'BufferLineBufferVisible' },
+  BufferLineDuplicateVisible = { fg = c.tab.fgInactive, bg = c.tab.bgVisible, style = 'italic' },
+  BufferLineSeparatorVisible = { fg = c.tab.bgFill, bg = c.tab.bgVisible },
+  BufferLinePickVisible = { fg = c.tab.pick, bg = c.tab.bgVisible },
+
+  -- selected
+  BufferLineBufferSelected = { fg = c.tab.fg, bg = c.tab.bgCurrent },
+  BufferLineCloseButtonSelected = { fg = c.tab.fg, bg = c.tab.bgCurrent },
+  BufferLineModifiedSelected = { fg = c.tab.modified, bg = c.tab.bgCurrent },
+  BufferLineDiagnosticSelected = { fg = c.tab.fg, bg = c.tab.bgCurrent, style = 'italic' },
+  BufferLineInfoSelected = { fg = c.notify.info, bg = c.tab.bgCurrent },
+  BufferLineInfoDiagnosticSelected = { fg = c.notify.info, bg = c.tab.bgCurrent },
+  BufferLineWarningSelected = { fg = c.notify.warn, bg = c.tab.bgCurrent },
+  BufferLineWarningDiagnosticSelected = { fg = c.notify.warn, bg = c.tab.bgCurrent },
+  BufferLineErrorSelected = { fg = c.notify.error, bg = c.tab.bgCurrent },
+  BufferLineErrorDiagnosticSelected = { fg = c.notify.error, bg = c.tab.bgCurrent },
+  BufferLineDuplicateSelected = { fg = c.tab.fgInactive, bg = c.tab.bgCurrent, style = 'italic' },
+  BufferLineSeparatorSelected = { fg = c.tab.bgCurrent, bg = c.tab.bgCurrent },
+  BufferLineIndicatorSelected = { fg = c.tab.indicator, bg = c.tab.bgCurrent },
+  BufferLinePickSelected = { fg = c.tab.pick, bg = c.tab.bgCurrent },
+
+  -- tab
+  BufferLineTab = { 'BufferLineBuffer' },
+  BufferLineTabSelected = { fg = c.tab.indicator, bg = c.tab.bgCurrent },
+  BufferLineTabClose = { fg = c.tab.indicator, bg = c.tab.bgFill },
+}
+
 M.barbar = {
   BufferCurrent = { fg = c.tab.fg, bg = c.tab.bgCurrent },
-  BufferCurrentIndex = { fg = c.tab.sign, bg = c.tab.bgCurrent },
+  BufferCurrentIndex = { fg = c.tab.indicator, bg = c.tab.bgCurrent },
   BufferCurrentMod = { fg = c.tab.modified, bg = c.tab.bgCurrent },
-  BufferCurrentSign = { fg = c.tab.sign, bg = c.tab.bgCurrent },
-  BufferCurrentTarget = { fg = c.tab.indicator, bg = c.tab.bgCurrent },
+  BufferCurrentSign = { fg = c.tab.indicator, bg = c.tab.bgCurrent },
+  BufferCurrentTarget = { fg = c.tab.pick, bg = c.tab.bgCurrent },
   BufferVisible = { fg = c.tab.fgVisible, bg = c.tab.bgVisible },
   BufferVisibleIndex = { fg = c.tab.fgVisible, bg = c.tab.bgVisible },
   BufferVisibleMod = { fg = c.tab.modified, bg = c.tab.bgVisible },
   BufferVisibleSign = { fg = c.tab.fgVisible, bg = c.tab.bgVisible },
-  BufferVisibleTarget = { fg = c.tab.indicator, bg = c.tab.bgVisible },
+  BufferVisibleTarget = { fg = c.tab.pick, bg = c.tab.bgVisible },
   BufferInactive = { fg = c.tab.fgInactive, bg = c.tab.bgInactive },
   BufferInactiveIndex = { fg = c.tab.fgInactive, bg = c.tab.bgInactive },
   BufferInactiveMod = { fg = c.tab.modified, bg = c.tab.bgInactive },
   BufferInactiveSign = { fg = c.tab.fgInactive, bg = c.tab.bgInactive },
-  BufferInactiveTarget = { fg = c.tab.indicator, bg = c.tab.bgInactive },
-  BufferTabpages = { fg = c.tab.sign, bg = c.tab.bgFill, style = 'bold' },
+  BufferInactiveTarget = { fg = c.tab.pick, bg = c.tab.bgInactive },
+  BufferTabpages = { fg = c.tab.indicator, bg = c.tab.bgFill, style = 'bold' },
   BufferTabpageFill = { fg = c.tab.bgFill, bg = c.tab.bgFill },
-  BufferOffset = { fg = c.tab.sign, bg = c.tab.bgFill },
+  BufferOffset = { fg = c.tab.indicator, bg = c.tab.bgFill },
 
   BufferCurrentIcon = { 'BufferCurrent' },
   BufferVisibleIcon = { 'BufferVisible' },
@@ -574,8 +628,5 @@ M.aerial = {
 }
 
 -- TODO: below
--- M.bufferline = {
-
--- }
 
 return M
