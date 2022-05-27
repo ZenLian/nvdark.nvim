@@ -96,8 +96,8 @@ M.builtin = {
   ErrorMsg = { fg = p.red, bg = p.bg },
   VertSplit = { fg = p.splitDark, bg = p.bg }, -- Column separating vertically split window
   -- WinSeparator = { 'VertSplit' } -- separators between window split
-  --
-  Folded = { fg = p.leftLight, bg = p.leftDark },
+
+  Folded = { fg = p.fg, bg = p.folded },
   FoldColumn = { fg = p.lineNumber },
   SignColumn = { fg = p.fg, bg = p.bg },
   IncSearch = { fg = p.none, bg = p.searchCurrent },
@@ -585,7 +585,7 @@ M.bufferline = {
   BufferLineErrorSelected = { fg = c.notify.error, bg = c.tab.bgCurrent },
   BufferLineErrorDiagnosticSelected = { fg = c.notify.error, bg = c.tab.bgCurrent },
   BufferLineDuplicateSelected = { fg = c.tab.fgInactive, bg = c.tab.bgCurrent, style = 'italic' },
-  BufferLineSeparatorSelected = { fg = c.tab.bgCurrent, bg = c.tab.bgCurrent },
+  BufferLineSeparatorSelected = { fg = c.tab.bgFill, bg = c.tab.bgCurrent },
   BufferLineIndicatorSelected = { fg = c.tab.indicator, bg = c.tab.bgCurrent },
   BufferLinePickSelected = { fg = c.tab.pick, bg = c.tab.bgCurrent },
 

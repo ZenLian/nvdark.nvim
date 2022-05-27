@@ -10,7 +10,7 @@ local palette = {
   tabOutside = '#252526',
 
   leftDark = '#252526',
-  leftMid = '#373737',
+  leftMid = '#37373D',
   leftLight = '#3F3F46',
 
   -- popupFront = '#BBBBBB',
@@ -62,6 +62,8 @@ local palette = {
   silver = '#C0C0C0',
 
   -- manually picked from vscode
+  --
+  folded = '#202D39',
   -- statusline
   uiBlue = '#007ACC',
   uiGreen = '#16825D',
