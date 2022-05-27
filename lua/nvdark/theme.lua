@@ -31,7 +31,13 @@ local c = {
     variableBuiltin = p.blue,
   },
   diff = {
-    add = p.diffGreenLight,
+    add = p.diffGreenDark,
+    addText = p.diffGreenLight,
+    addSign = p.diffGreenLightLight,
+    delete = p.diffRedDark,
+    deleteText = p.diffRedLight,
+    deleteSign = p.diffRedLightLight,
+    changeSign = p.diffBlueLightLight,
   },
   notify = {
     error = p.red,
@@ -86,10 +92,10 @@ M.builtin = {
   CursorLine = { bg = p.cursorDarkDark },
   CursorColumn = { bg = p.cursorDarkDark },
   Directory = { fg = p.blue, bg = p.bg },
-  DiffAdd = { bg = p.diffGreenLight },
-  DiffChange = { bg = p.diffRedDark },
-  DiffDelete = { bg = p.diffRedLight },
-  DiffText = { bg = p.diffRedLight },
+  DiffAdd = { bg = c.diff.add },
+  DiffChange = { bg = c.diff.delete },
+  DiffDelete = { bg = c.diff.delete },
+  DiffText = { bg = c.diff.deleteText },
   EndOfBuffer = { fg = p.bg },
 
   Conceal = { fg = p.fg, bg = p.bg },
@@ -113,7 +119,7 @@ M.builtin = {
   -- MsgArea -- Area for messages and cmdlin
   -- MsgSeparator -- Separator for scrolled messages, `msgsep` flag of 'display
   MoreMsg = { fg = p.fg, bg = p.leftDark },
-  NonText = { fg = p.lineNumber, bg = p.bg },
+  NonText = { fg = p.lineNumber },
   NormalFloat = { fg = p.popupFront, bg = p.popupBack },
   -- NormalNC = { },
   FloatBorder = { fg = p.blue, bg = p.popupBack },
@@ -458,16 +464,16 @@ M.nvimTree = {
 
 -- lewis6991/gitsigns.nvim
 M.gitsigns = {
-  GitSignsAdd = { fg = p.green },
-  GitSignsChange = { fg = p.blue },
-  GitSignsDelete = { fg = p.red },
+  GitSignsAdd = { fg = c.diff.addSign },
+  GitSignsChange = { fg = c.diff.changeSign },
+  GitSignsDelete = { fg = c.diff.deleteSign },
   -- GitSignsAddNr            = { fg = c.bg, bg = c.green },
   -- GitSignsChangeNr         = { fg = c.bg, bg = c.blue },
   -- GitSignsDeleteNr         = { fg = c.bg, bg = c.red },
-  GitSignsAddLn = { fg = p.bg, bg = p.green },
-  GitSignsChangeLn = { fg = p.bg, bg = p.blue },
-  GitSignsDeleteLn = { fg = p.bg, bg = p.red },
-  -- GitSignsCurrentLineBlame = { fg = c.green },
+  GitSignsAddLn = { bg = c.diff.add },
+  GitSignsChangeLn = { bg = c.diff.delete },
+  GitSignsDeleteLn = { bg = c.diff.delete },
+  GitSignsCurrentLineBlame = { 'NonText' },
 }
 
 -- folke/which-key.nvim

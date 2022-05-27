@@ -34,9 +34,12 @@ local palette = {
 
   diffRedDark = '#4B1818',
   diffRedLight = '#6F1313',
-  diffRedLightLight = '#FB0101',
+  diffRedLightLight = '#F14C4C',
+  -- diffRedLightLight = '#FB0101',
   diffGreenDark = '#373D29',
   diffGreenLight = '#4B5632',
+  diffGreenLightLight = '#487E02',
+  diffBlueLightLight = '#1B81A8',
   searchCurrent = '#515c6a',
   search = '#613315',
 
