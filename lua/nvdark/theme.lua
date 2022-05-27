@@ -1,144 +1,196 @@
 -- TODO: split plugins into seperate files
 local M = {}
-local c = require('nvdark.palette')
+local p = require('nvdark.palette')
 local style = require('nvdark.style')
 local config = require('nvdark.config').options
 
+-- TODO: unify colors
+local c = {
+  -- terminal compatibility
+  base = {
+    black = p.bg,
+    red = p.red,
+    green = p.green,
+    yello = p.yello,
+    blue = p.blue,
+    magenta = p.pink,
+    cyan = p.blueGreen,
+    white = p.fg,
+  },
+  syntax = {
+    comment = p.green,
+    number = p.lightGreen,
+    string = p.orange,
+    boolean = p.blue,
+    func = p.yellow,
+    keyword = p.pink,
+    operator = p.fg,
+    type = p.blueGreen,
+    typeBuiltin = p.blue,
+    variable = p.lightBlue,
+    variableBuiltin = p.blue,
+  },
+  diff = {
+    add = p.diffGreenLight,
+  },
+  notify = {
+    error = p.red,
+    warn = p.yellowOrange,
+    info = p.blue,
+    debug = p.gray,
+    trace = p.pink,
+  },
+  tab = {
+    fg = p.tabFg,
+    fgVisible = p.fg,
+    fgInactive = p.tabInactiveFg,
+
+    sign = p.blue,
+    indicator = p.red,
+    modified = p.green,
+
+    bgFill = p.tabOutside,
+    bgCurrent = p.tabCurrent,
+    bgVisible = p.tabOther,
+    bgInactive = p.tabOther,
+  },
+}
+
 -- terminal colors support
-vim.g.terminal_color_0 = c.bg
-vim.g.terminal_color_1 = c.red
-vim.g.terminal_color_2 = c.green
-vim.g.terminal_color_3 = c.yellow
-vim.g.terminal_color_4 = c.blue
-vim.g.terminal_color_5 = c.pink
-vim.g.terminal_color_6 = c.blueGreen
-vim.g.terminal_color_7 = c.fg
-vim.g.terminal_color_8 = c.bg
-vim.g.terminal_color_9 = c.red
-vim.g.terminal_color_10 = c.green
-vim.g.terminal_color_11 = c.yellow
-vim.g.terminal_color_12 = c.blue
-vim.g.terminal_color_13 = c.pink
-vim.g.terminal_color_14 = c.blueGreen
-vim.g.terminal_color_15 = c.fg
+vim.g.terminal_color_0 = c.base.black
+vim.g.terminal_color_1 = c.base.red
+vim.g.terminal_color_2 = c.base.green
+vim.g.terminal_color_3 = c.base.yellow
+vim.g.terminal_color_4 = c.base.blue
+vim.g.terminal_color_5 = c.base.magenta
+vim.g.terminal_color_6 = c.base.cyan
+vim.g.terminal_color_7 = c.base.white
+vim.g.terminal_color_8 = c.base.black
+vim.g.terminal_color_9 = c.base.red
+vim.g.terminal_color_10 = c.base.green
+vim.g.terminal_color_11 = c.base.yellow
+vim.g.terminal_color_12 = c.base.blue
+vim.g.terminal_color_13 = c.base.magenta
+vim.g.terminal_color_14 = c.base.cyan
+vim.g.terminal_color_15 = c.base.white
 
 -- builtin highlighting groups
 M.builtin = {
-  Normal = { fg = c.fg, bg = c.bg },
-  ColorColumn = { bg = c.cursorDarkDark },
-  Cursor = { fg = c.cursorDark, bg = c.cursorLight },
+  Normal = { fg = p.fg, bg = p.bg },
+  ColorColumn = { bg = p.cursorDarkDark },
+  Cursor = { fg = p.cursorDark, bg = p.cursorLight },
   -- lCursor          = { 'Cursor' },
   -- CursorIM         = { 'Cursor' },
   -- TermCursor       = { 'Cursor' },
   -- TermCursorNC = { 'Cursor' }, -- cursor in an unfocused termina
-  CursorLine = { bg = c.cursorDarkDark },
-  CursorColumn = { bg = c.cursorDarkDark },
-  Directory = { fg = c.blue, bg = c.bg },
-  DiffAdd = { bg = c.diffGreenLight },
-  DiffChange = { bg = c.diffRedDark },
-  DiffDelete = { bg = c.diffRedLight },
-  DiffText = { bg = c.diffRedLight },
-  EndOfBuffer = { fg = c.bg },
+  CursorLine = { bg = p.cursorDarkDark },
+  CursorColumn = { bg = p.cursorDarkDark },
+  Directory = { fg = p.blue, bg = p.bg },
+  DiffAdd = { bg = p.diffGreenLight },
+  DiffChange = { bg = p.diffRedDark },
+  DiffDelete = { bg = p.diffRedLight },
+  DiffText = { bg = p.diffRedLight },
+  EndOfBuffer = { fg = p.bg },
 
-  Conceal = { fg = c.fg, bg = c.bg },
-  ErrorMsg = { fg = c.red, bg = c.bg },
-  VertSplit = { fg = c.splitDark, bg = c.bg }, -- Column separating vertically split window
+  Conceal = { fg = p.fg, bg = p.bg },
+  ErrorMsg = { fg = p.red, bg = p.bg },
+  VertSplit = { fg = p.splitDark, bg = p.bg }, -- Column separating vertically split window
   -- WinSeparator = { 'VertSplit' } -- separators between window split
   --
-  Folded = { fg = c.leftLight, bg = c.leftDark },
-  FoldColumn = { fg = c.lineNumber },
-  SignColumn = { fg = c.fg, bg = c.bg },
-  IncSearch = { fg = c.none, bg = c.searchCurrent },
+  Folded = { fg = p.leftLight, bg = p.leftDark },
+  FoldColumn = { fg = p.lineNumber },
+  SignColumn = { fg = p.fg, bg = p.bg },
+  IncSearch = { fg = p.none, bg = p.searchCurrent },
   -- Substitute       = { fg = c.bg0, bg = c.yellow }, --TODO
-  LineNr = { fg = c.lineNumber, bg = c.bg },
+  LineNr = { fg = p.lineNumber, bg = p.bg },
   -- LineNrAbove = {
   -- LineNrBelow = {
-  CursorLineNr = { fg = c.popupFront, bg = c.bg },
+  CursorLineNr = { fg = p.popupFront, bg = p.bg },
   -- CursorLineSign -- Like SignColumn when 'cursorline' is set for the cursor line
   -- CursorLineFold -- Like FoldColumn when 'cursorline' is set for the cursor line
-  MatchParen = { fg = c.none, bg = c.cursorDark },
-  ModeMsg = { fg = c.fg, bg = c.leftDark },
+  MatchParen = { fg = p.none, bg = p.cursorDark },
+  ModeMsg = { fg = p.fg, bg = p.leftDark },
   -- MsgArea -- Area for messages and cmdlin
   -- MsgSeparator -- Separator for scrolled messages, `msgsep` flag of 'display
-  MoreMsg = { fg = c.fg, bg = c.leftDark },
-  NonText = { fg = c.lineNumber, bg = c.bg },
-  NormalFloat = { fg = c.popupFront, bg = c.popupBack },
+  MoreMsg = { fg = p.fg, bg = p.leftDark },
+  NonText = { fg = p.lineNumber, bg = p.bg },
+  NormalFloat = { fg = p.popupFront, bg = p.popupBack },
   -- NormalNC = { },
-  FloatBorder = { fg = c.blue, bg = c.popupBack },
-  Pmenu = { fg = c.popupFront, bg = c.popupBack },
-  PmenuSel = { fg = c.popupFront, bg = c.popupHighlightBlue },
-  PmenuSbar = { bg = c.popupBack },
-  PmenuThumb = { bg = c.lineNumber },
-  Question = { fg = c.blue, bg = c.bg },
+  FloatBorder = { fg = p.blue, bg = p.popupBack },
+  Pmenu = { fg = p.popupFront, bg = p.popupBack },
+  PmenuSel = { fg = p.popupFront, bg = p.popupHighlightBlue },
+  PmenuSbar = { bg = p.popupBack },
+  PmenuThumb = { bg = p.lineNumber },
+  Question = { fg = p.blue, bg = p.bg },
   -- QuickFixLine     = { fg = c.purple, bg = c.none, 'bold' }, --TODO
-  Search = { fg = c.none, bg = c.search },
-  SpecialKey = { fg = c.blue, bg = c.none },
-  SpellBad = { fg = c.red, bg = c.bg, style = 'undercurl', sp = c.red },
-  SpellCap = { fg = c.red, bg = c.bg, style = 'undercurl', sp = c.red },
-  SpellLocal = { fg = c.red, bg = c.bg, style = 'undercurl', sp = c.red },
-  SpellRare = { fg = c.red, bg = c.bg, style = 'undercurl', sp = c.red },
-  StatusLine = { fg = c.fg, bg = c.leftMid },
-  StatusLineNC = { fg = c.fg, bg = c.leftDark },
+  Search = { fg = p.none, bg = p.search },
+  SpecialKey = { fg = p.blue, bg = p.none },
+  SpellBad = { fg = p.red, bg = p.bg, style = 'undercurl', sp = p.red },
+  SpellCap = { fg = p.red, bg = p.bg, style = 'undercurl', sp = p.red },
+  SpellLocal = { fg = p.red, bg = p.bg, style = 'undercurl', sp = p.red },
+  SpellRare = { fg = p.red, bg = p.bg, style = 'undercurl', sp = p.red },
+  StatusLine = { fg = p.fg, bg = p.leftMid },
+  StatusLineNC = { fg = p.fg, bg = p.leftDark },
   -- StatusLineTermNC = { fg = c.grey, bg = c.bg1 }, --TODO
-  TabLine = { fg = c.fg, bg = c.tabOther },
-  TabLineFill = { fg = c.fg, bg = c.tabOutside },
-  TabLineSel = { fg = c.fg, bg = c.tabCurrent },
-  Title = { fg = c.blue, bg = c.none, style = 'bold' },
-  Visual = { fg = c.none, bg = c.selection },
-  VisualNOS = { fg = c.none, bg = c.selection },
-  WarningMsg = { fg = c.red, bg = c.bg, style = 'bold' },
-  Whitespace = { fg = c.lineNumber, bg = c.none },
-  WildMenu = { fg = c.none, bg = c.selection },
+  TabLine = { fg = p.fg, bg = p.tabOther },
+  TabLineFill = { fg = p.fg, bg = p.tabOutside },
+  TabLineSel = { fg = p.fg, bg = p.tabCurrent },
+  Title = { fg = p.blue, bg = p.none, style = 'bold' },
+  Visual = { fg = p.none, bg = p.selection },
+  VisualNOS = { fg = p.none, bg = p.selection },
+  WarningMsg = { fg = p.yellowOrange, bg = p.bg, style = 'bold' },
+  Whitespace = { fg = p.lineNumber, bg = p.none },
+  WildMenu = { fg = p.none, bg = p.selection },
 }
 
 -- common syntax groups
 -- see :h group-name
 M.syntax = {
-  Comment = { fg = c.green, style = style.comment },
+  Comment = { fg = c.syntax.comment, style = style.comment },
 
-  Constant = { fg = c.blue },
-  String = { fg = c.orange },
-  Boolean = { fg = c.blue },
-  Character = { fg = c.orange },
-  Number = { fg = c.lightGreen },
-  Float = { fg = c.lightGreen },
+  Constant = { fg = p.blue },
+  String = { fg = c.syntax.string },
+  Boolean = { fg = c.syntax.boolean },
+  Character = { fg = c.syntax.string },
+  Number = { fg = c.syntax.number },
+  Float = { fg = c.syntax.number },
 
-  Identifier = { fg = c.lightBlue },
-  Function = { fg = c.yellow },
+  Identifier = { fg = p.lightBlue },
+  Function = { fg = c.syntax.func },
 
-  Statement = { fg = c.pink },
-  Conditional = { fg = c.pink },
-  Repeat = { fg = c.pink },
-  Label = { fg = c.pink },
-  Operator = { fg = c.fg },
-  Keyword = { fg = c.pink },
-  Exception = { fg = c.pink },
+  Statement = { fg = c.syntax.keyword },
+  Conditional = { fg = c.syntax.keyword },
+  Repeat = { fg = c.syntax.keyword },
+  Label = { fg = c.syntax.keyword },
+  Operator = { fg = c.syntax.operator },
+  Keyword = { fg = c.syntax.keyword },
+  Exception = { fg = c.syntax.keyword },
 
-  PreProc = { fg = c.pink },
-  Include = { fg = c.pink },
-  Define = { fg = c.pink },
-  Macro = { fg = c.pink },
-  PreCondit = { fg = c.pink },
+  PreProc = { fg = c.syntax.keyword },
+  Include = { fg = c.syntax.keyword },
+  Define = { fg = c.syntax.keyword },
+  Macro = { fg = c.syntax.keyword },
+  PreCondit = { fg = c.syntax.keyword },
 
-  Type = { fg = c.blue },
-  StorageClass = { fg = c.blue },
-  Structure = { fg = c.blue },
-  Typedef = { fg = c.blue },
+  Type = { fg = p.blue },
+  StorageClass = { fg = p.blue },
+  Structure = { fg = p.blue },
+  Typedef = { fg = p.blue },
 
-  Special = { fg = c.blue },
-  SpecialChar = { fg = c.fg },
-  Tag = { fg = c.fg },
-  Delimiter = { fg = c.fg },
-  SpecialComment = { fg = c.green },
-  Debug = { fg = c.fg },
+  Special = { fg = p.blue },
+  SpecialChar = { fg = p.fg },
+  Tag = { fg = p.fg },
+  Delimiter = { fg = p.fg },
+  SpecialComment = { fg = p.green },
+  Debug = { fg = p.fg },
 
-  Underlined = { fg = c.none, style = 'underline' },
+  Underlined = { fg = p.none, style = 'underline' },
 
-  Ignore = { fg = c.fg },
+  Ignore = { fg = p.fg },
 
-  Error = { fg = c.red, style = 'undercurl' },
+  Error = { fg = p.red, style = 'undercurl' },
 
-  Todo = { fg = c.yellowOrange, bg = c.bg, style = 'bold' },
+  Todo = { fg = p.yellowOrange, bg = p.bg, style = 'bold' },
 }
 
 -- Tree-Sitter syntax groups. Most link to corresponding
@@ -147,93 +199,93 @@ M.syntax = {
 -- See :h nvim-treesitter-highlights
 --
 M.treesitter = {
-  TSAttribute = { fg = c.blueGreen }, -- Annotations that can be attached to the code to denote some kind of meta information. e.g. C++/Dart attributes.
-  TSAnnotation = { fg = c.yellow },
-  -- TSBoolean            = { "Boolean" },
-  -- TSCharacter          = { "Character" },
-  -- TSCharacterSpecial   = { "SpecialChar" }, -- Special characters.
-  -- TSComment            = { "Comment" },
-  -- TSConditional        = { "Conditional" },
-  TSConstant = { fg = c.yellow }, -- Constants identifiers. These might not be semantically constant. E.g. uppercase variables in Python.
-  TSConstBuiltin = { fg = c.blue }, -- Built-in constant values: `nil` in Lua.
-  TSConstMacro = { fg = c.blueGreen }, -- Constants defined by macros: `NULL` in C.
-  TSConstructor = { fg = c.blueGreen }, -- Constructor calls and definitions: `{}` in Lua, and Java constructors.
-  -- TSDebug           = { "Debug" }, -- Debugging statements.
-  -- TSDefine             = { "Define" }, -- Preprocessor #define statements.
-  -- TSError              = { "Error" }, -- Syntax/parser errors. This might highlight large sections of code while the user is typing still incomplete code, use a sensible highlight.
-  -- TSException          = { "Exception" }, -- Exception related keywords: `try`, `except`, `finally` in Python.
-  TSField = { fg = c.blueGreen }, -- Object and struct fields.
-  -- TSFloat              = { "Float" }, -- Floating-point number literals.
-  -- TSFunction           = { "Function" }, -- Function calls and definitions.
-  TSFuncBuiltin = { fg = c.yellow }, -- Built-in functions: `print` in Lua.
-  TSFuncMacro = { fg = c.yellow }, -- Macro defined functions (calls and definitions): each `macro_rules` in Rust.
-  -- TSInclude         = { "Include" }, -- File or module inclusion keywords: `#include` in C, `use` or `extern crate` in Rust.
+  TSAttribute = { fg = p.blueGreen }, -- Annotations that can be attached to the code to denote some kind of meta information. e.g. C++/Dart attributes.
+  TSAnnotation = { fg = p.yellow },
+  TSBoolean = { 'Boolean' },
+  TSCharacter = { 'Character' },
+  TSCharacterSpecial = { 'SpecialChar' }, -- Special characters.
+  TSComment = { 'Comment' },
+  TSConditional = { 'Conditional' },
+  TSConstant = { fg = p.yellow }, -- Constants identifiers. These might not be semantically constant. E.g. uppercase variables in Python.
+  TSConstBuiltin = { fg = p.blue }, -- Built-in constant values: `nil` in Lua.
+  TSConstMacro = { fg = p.blueGreen }, -- Constants defined by macros: `NULL` in C.
+  TSConstructor = { fg = p.blueGreen }, -- Constructor calls and definitions: `{}` in Lua, and Java constructors.
+  TSDebug = { 'Debug' }, -- Debugging statements.
+  TSDefine = { 'Define' }, -- Preprocessor #define statements.
+  TSError = { 'Error' }, -- Syntax/parser errors. This might highlight large sections of code while the user is typing still incomplete code, use a sensible highlight.
+  TSException = { 'Exception' }, -- Exception related keywords: `try`, `except`, `finally` in Python.
+  TSField = { fg = p.blueGreen }, -- Object and struct fields.
+  TSFloat = { 'Float' }, -- Floating-point number literals.
+  TSFunction = { 'Function' }, -- Function calls and definitions.
+  TSFuncBuiltin = { fg = p.yellow }, -- Built-in functions: `print` in Lua.
+  TSFuncMacro = { fg = p.yellow }, -- Macro defined functions (calls and definitions): each `macro_rules` in Rust.
+  TSInclude = { 'Include' }, -- File or module inclusion keywords: `#include` in C, `use` or `extern crate` in Rust.
   TSKeyword = { 'Keyword' }, -- Keywords that don't fit into other categories.
-  -- TSKeywordFunction = { fg = c.blue }, -- Keywords used to define a function: `function` in Lua, `def` and `lambda` in Python.
-  TSKeywordOperator = { fg = c.blue }, -- Unary and binary operators that are English words: `and`, `or` in Python; `sizeof` in C.
-  -- TSKeywordReturn      = { "Keyword" }, -- Keywords like `return` and `yield`.
-  TSLabel = { fg = c.lightBlue }, -- GOTO labels: `label:` in C, and `::label::` in Lua.
-  TSMethod = { fg = c.yellow }, -- Method calls and definitions.
-  TSNamespace = { fg = c.blueGreen }, -- Identifiers referring to modules and namespaces.
+  TSKeywordFunction = { fg = c.blue }, -- Keywords used to define a function: `function` in Lua, `def` and `lambda` in Python.
+  TSKeywordOperator = { fg = p.blue }, -- Unary and binary operators that are English words: `and`, `or` in Python; `sizeof` in C.
+  TSKeywordReturn = { 'Keyword' }, -- Keywords like `return` and `yield`.
+  TSLabel = { fg = p.lightBlue }, -- GOTO labels: `label:` in C, and `::label::` in Lua.
+  TSMethod = { fg = p.yellow }, -- Method calls and definitions.
+  TSNamespace = { fg = p.blueGreen }, -- Identifiers referring to modules and namespaces.
   -- TSNone               { } , -- No highlighting (sets all highlight arguments to `NONE`). this group is used to clear certain ranges, for example, string interpolations. Don't change the values of this highlight group.
   -- TSNumber             = { "Number" }, -- Numeric literals that don't fit into other categories.
   -- TSOperator           = { "Operator" }, -- Binary or unary operators: `+`, and also `->` and `*` in C.
-  TSParameter = { fg = c.lightBlue, style = style.parameter }, -- Parameters of a function.
+  TSParameter = { fg = p.lightBlue, style = style.parameter }, -- Parameters of a function.
   TSParameterReference = { 'TSParameter' }, -- References to parameters of a function.
   -- TSPreProc            = { "PreCondit" }, -- Preprocessor #if, #else, #endif, etc.
-  TSProperty = { fg = c.lightBlue }, -- Same as `TSField`.
-  TSPunctDelimiter = { fg = c.fg }, -- Punctuation delimiters: Periods, commas, semicolons, etc.
-  TSPunctBracket = { fg = c.fg }, -- Brackets, braces, parentheses, etc.
-  TSPunctSpecial = { fg = c.fg }, -- Special punctuation that doesn't fit into the previous categories.
+  TSProperty = { fg = p.lightBlue }, -- Same as `TSField`.
+  TSPunctDelimiter = { fg = p.fg }, -- Punctuation delimiters: Periods, commas, semicolons, etc.
+  TSPunctBracket = { fg = p.fg }, -- Brackets, braces, parentheses, etc.
+  TSPunctSpecial = { fg = p.fg }, -- Special punctuation that doesn't fit into the previous categories.
   TSRepeat = { 'Keyword' }, -- Keywords related to loops: `for`, `while`, etc.
   TSStorageClass = { 'Keyword' }, -- Keywords that affect how a variable is stored: `static`, `comptime`, `extern`, etc.
   TSString = { 'String' }, -- String literals.
   TSStringRegex = { 'String' }, -- Regular expression literals.
-  TSStringEscape = { fg = c.orange, style = 'bold' }, -- Escape characters within a string: `\n`, `\t`, etc.
+  TSStringEscape = { fg = c.syntax.string, style = 'bold' }, -- Escape characters within a string: `\n`, `\t`, etc.
   TSStringSpecial = { 'String' }, -- Strings with special meaning that don't fit into the previous categories.
-  TSSymbol = { fg = c.lightBlue }, -- Identifiers referring to symbols or atoms.
-  TSTag = { fg = c.blue }, -- Tags like HTML tag names.
+  TSSymbol = { fg = p.lightBlue }, -- Identifiers referring to symbols or atoms.
+  TSTag = { fg = p.blue }, -- Tags like HTML tag names.
   -- TSTagAttribute       = { "Blue" }, -- HTML tag attributes.
-  TSTagDelimiter = { fg = c.gray }, -- Tag delimiters like `<` `>` `/`.
-  TSText = { fg = c.fg }, -- Non-structured text. Like text in a markup language.
-  TSStrong = { fg = c.blue, style = 'bold' }, -- Text to be represented in bold.
+  TSTagDelimiter = { fg = p.gray }, -- Tag delimiters like `<` `>` `/`.
+  TSText = { fg = p.fg }, -- Non-structured text. Like text in a markup language.
+  TSStrong = { fg = p.blue, style = 'bold' }, -- Text to be represented in bold.
   TSEmphasis = { style = style.enable }, -- Text to be represented with emphasis.
-  TSUnderline = { fg = c.yellowOrange }, -- Text to be represented with an underline.
+  TSUnderline = { fg = p.yellowOrange }, -- Text to be represented with an underline.
   -- TSStrike             = { "Grey" }, -- Strikethrough text.
-  TSTitle = { fg = c.blue }, -- Text that is part of a title.
+  TSTitle = { fg = p.blue }, -- Text that is part of a title.
   -- TSTodo               = { "Todo" },
-  TSLiteral = { fg = c.fg }, -- Literal or verbatim text.
+  TSLiteral = { fg = p.fg }, -- Literal or verbatim text.
   TSURI = { style = 'underline' }, -- URIs like hyperlinks or email addresses.
   -- TSMath               = { "Green" }, -- Math environments like LaTeX's `$ ... $`
-  TSTextReference = { fg = c.orange }, -- Footnotes, text references, citations, etc.
+  TSTextReference = { fg = p.orange }, -- Footnotes, text references, citations, etc.
   -- TSEnvironment        { } , -- Text environments of markup languages.
   -- TSEnvironmentName    { } , -- Text/string indicating the type of text environment. Like the name of a `\begin` block in LaTeX.
-  TSNote = { fg = c.blueGreen, style = 'bold' }, -- Text representation of an informational note.
-  TSWarning = { fg = c.yellowOrange, style = 'bold' }, -- Text representation of a warning note.
-  TSDanger = { fg = c.red, style = 'bold' }, -- Text representation of a danger note.
-  TSType = { fg = c.blueGreen }, -- Type (and class) definitions and annotations.
-  TSTypeBuiltin = { fg = c.blue }, -- Built-in types: `i32` in Rust.
-  TSVariable = { fg = c.lightBlue }, -- Variable names that don't fit into other categories.
-  TSVariableBuiltin = { fg = c.blue }, -- Variable names defined by the language: `this` or `self` in Javascript.
+  TSNote = { fg = c.notify.info, style = 'bold' }, -- Text representation of an informational note.
+  TSWarning = { fg = c.notify.warn, style = 'bold' }, -- Text representation of a warning note.
+  TSDanger = { fg = c.notify.error, style = 'bold' }, -- Text representation of a danger note.
+  TSType = { fg = c.syntax.type }, -- Type (and class) definitions and annotations.
+  TSTypeBuiltin = { fg = c.syntax.typeBuiltin }, -- Built-in types: `i32` in Rust.
+  TSVariable = { fg = c.syntax.variable }, -- Variable names that don't fit into other categories.
+  TSVariableBuiltin = { fg = c.syntax.variableBuiltin }, -- Variable names defined by the language: `this` or `self` in Javascript.
 }
 
 -- see :h lsp-highlight
 M.lsp = {
-  LspReferenceText = { bg = c.leftMid },
-  LspReferenceRead = { bg = c.leftMid },
-  LspReferenceWrite = { bg = c.leftMid },
+  LspReferenceText = { bg = p.leftMid },
+  LspReferenceRead = { bg = p.leftMid },
+  LspReferenceWrite = { bg = p.leftMid },
   -- LspCodeLens -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
   -- LspCodeLensSeparator -- Used to color the separator between two or more code lens.
   -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
-  LspSignatureActiveParameter = { fg = c.blue },
+  LspSignatureActiveParameter = { fg = p.blue },
 }
 
 -- see :h diagnostic-highlights
 M.diagnostic = {
-  DiagnosticError = { fg = c.red },
-  DiagnosticWarn = { fg = c.yellow },
-  DiagnosticInfo = { fg = c.blue },
-  DiagnosticHint = { fg = c.blue },
+  DiagnosticError = { fg = c.notify.error },
+  DiagnosticWarn = { fg = c.notify.warn },
+  DiagnosticInfo = { fg = c.notify.info },
+  DiagnosticHint = { fg = c.notify.info },
   -- DiagnosticFloatingError    = { fg = c.red },
   -- DiagnosticFloatingWarn     = { fg = c.yellow },
   -- DiagnosticFloatingInfo     = { fg = c.blue },
@@ -242,10 +294,10 @@ M.diagnostic = {
   DiagnosticVirtualTextWarn = { 'NonText' },
   DiagnosticVirtualTextInfo = { 'NonText' },
   DiagnosticVirtualTextHint = { 'NonText' },
-  DiagnosticUnderlineError = { style = 'undercurl', sp = c.red },
-  DiagnosticUnderlineWarn = { style = 'undercurl', sp = c.yellow },
-  DiagnosticUnderlineInfo = { style = 'undercurl', sp = c.blue },
-  DiagnosticUnderlineHint = { style = 'undercurl', sp = c.blue },
+  DiagnosticUnderlineError = { style = 'undercurl', sp = c.notify.error },
+  DiagnosticUnderlineWarn = { style = 'undercurl', sp = c.notify.warn },
+  DiagnosticUnderlineInfo = { style = 'undercurl', sp = c.notify.info },
+  DiagnosticUnderlineHint = { style = 'undercurl', sp = c.notify.info },
   -- DiagnosticSignError      = { fg = c.red },
   -- DiagnosticSignWarn       = { fg = c.yellow },
   -- DiagnosticSignInfo       = { fg = c.blue },
@@ -253,17 +305,17 @@ M.diagnostic = {
 }
 
 if config.diagnostic.colorful_virtual_text then
-  M.diagnostic.DiagnosticVirtualTextError = { fg = c.red }
-  M.diagnostic.DiagnosticVirtualTextWarn = { fg = c.yellow }
-  M.diagnostic.DiagnosticVirtualTextInfo = { fg = c.blue }
-  M.diagnostic.DiagnosticVirtualTextHint = { fg = c.blue }
+  M.diagnostic.DiagnosticVirtualTextError = { fg = c.notify.error }
+  M.diagnostic.DiagnosticVirtualTextWarn = { fg = c.notify.warn }
+  M.diagnostic.DiagnosticVirtualTextInfo = { fg = c.notify.info }
+  M.diagnostic.DiagnosticVirtualTextHint = { fg = c.notify.info }
 end
 
 --
 -- language specific
 --
 M.html = {
-  htmlH1 = { fg = c.blue, style = 'bold' },
+  htmlH1 = { fg = p.blue, style = 'bold' },
   htmlH2 = { 'htmlH1' },
   htmlH3 = { 'htmlH1' },
   htmlH4 = { 'htmlH1' },
@@ -278,18 +330,18 @@ M.markdown = {
   markdownH4 = { 'htmlH4' },
   markdownH5 = { 'htmlH5' },
   markdownH6 = { 'htmlH6' },
-  markdownUrl = { fg = c.green, style = 'underline' },
-  markdownUrlTitle = { fg = c.orange },
-  markdownUrlDelimiter = { fg = c.gray },
-  markdownUrlTitleDelimiter = { fg = c.gray },
+  markdownUrl = { fg = p.green, style = 'underline' },
+  markdownUrlTitle = { fg = p.orange },
+  markdownUrlDelimiter = { fg = p.gray },
+  markdownUrlTitleDelimiter = { fg = p.gray },
   markdownItalic = { style = 'italic' },
   markdownBold = { style = 'bold' },
-  markdownItalicDelimiter = { fg = c.grey, style = 'italic' },
-  markdownCode = { fg = c.lightBlue },
-  markdownCodeBlock = { fg = c.lightBlue },
-  markdownCodeDelimiter = { fg = c.lightBlue },
+  markdownItalicDelimiter = { fg = p.grey, style = 'italic' },
+  markdownCode = { fg = p.lightBlue },
+  markdownCodeBlock = { fg = p.lightBlue },
+  markdownCodeDelimiter = { fg = p.lightBlue },
   markdownBlockquote = { 'Comment' },
-  markdownListMarker = { fg = c.pink },
+  markdownListMarker = { fg = p.pink },
   markdownOrderdListMarker = { 'markdownListMarker' },
   --     markdownRule                 = { 'Yellow' },
   --     markdownHeadingRule          = { 'Grey' },
@@ -321,34 +373,34 @@ M.markdown = {
 
 -- hrsh7th/nvim-cmp
 M.cmp = {
-  CmpItemAbbrMatch = { fg = c.mediumBlue, style = 'bold' },
-  CmpItemAbbrMatchFuzzy = { fg = c.mediumBlue, style = 'bold' },
-  CmpItemAbbr = { fg = c.fg },
-  CmpItemAbbrDeprecated = { fg = c.cursorDark, bg = c.popupBack, style = 'strikethrough' },
-  CmpItemMenu = { fg = c.popupFront },
+  CmpItemAbbrMatch = { fg = p.mediumBlue, style = 'bold' },
+  CmpItemAbbrMatchFuzzy = { fg = p.mediumBlue, style = 'bold' },
+  CmpItemAbbr = { fg = p.fg },
+  CmpItemAbbrDeprecated = { fg = p.cursorDark, bg = p.popupBack, style = 'strikethrough' },
+  CmpItemMenu = { fg = p.popupFront },
   CmpItemKind = { 'Pmenu' },
-  CmpItemKindText = { fg = c.lightBlue },
-  CmpItemKindMethod = { fg = c.pink },
-  CmpItemKindFunction = { fg = c.pink },
-  CmpItemKindConstructor = { fg = c.orange }, -- TODO
+  CmpItemKindText = { fg = p.lightBlue },
+  CmpItemKindMethod = { fg = p.pink },
+  CmpItemKindFunction = { fg = p.pink },
+  CmpItemKindConstructor = { fg = p.orange }, -- TODO
   CmpItemKindField = { 'TSField' },
-  CmpItemKindVariable = { fg = c.lightBlue },
+  CmpItemKindVariable = { fg = p.lightBlue },
   CmpItemKindClass = { 'CmpItemKindConstructor' },
-  CmpItemKindInterface = { fg = c.lightBlue },
+  CmpItemKindInterface = { fg = p.lightBlue },
   CmpItemKindModule = { 'CmpItemKindKeyword' },
-  CmpItemKindProperty = { fg = c.fg },
-  CmpItemKindUnit = { fg = c.fg },
+  CmpItemKindProperty = { fg = p.fg },
+  CmpItemKindUnit = { fg = p.fg },
   CmpItemKindValue = { 'TSField' },
   CmpItemKindEnum = { 'TSField' },
-  CmpItemKindKeyword = { fg = c.fg },
+  CmpItemKindKeyword = { fg = p.fg },
   CmpItemKindSnippet = { 'TSText' },
-  CmpItemKindColor = { fg = c.orange },
-  CmpItemKindFile = { fg = c.fg },
+  CmpItemKindColor = { fg = p.orange },
+  CmpItemKindFile = { fg = p.fg },
   CmpItemKindReference = { 'TSParameterReference' },
   CmpItemKindFolder = { 'CmpItemKindFile' },
   CmpItemKindEnumMember = { 'TSField' },
   CmpItemKindConstant = { 'TSConstant' },
-  CmpItemKindStruct = { fg = c.lightBlue },
+  CmpItemKindStruct = { fg = p.lightBlue },
   CmpItemKindEvent = { 'TSConstant' },
   CmpItemKindOperator = { 'TSOperator' },
   CmpItemKindTypeParameter = { 'TSParameter' },
@@ -356,46 +408,46 @@ M.cmp = {
 
 -- nvim-telescope
 M.telescope = {
-  TelescopeNormal = { fg = c.fg, bg = c.leftDark },
+  TelescopeNormal = { fg = p.fg, bg = p.leftDark },
   -- TelescopeBorder         = { fg = c.gray },
-  TelescopePromptPrefix = { fg = c.lightBlue },
-  TelescopePromptNormal = { fg = c.fg, bg = c.leftMid },
-  TelescopePromptBorder = { fg = c.leftMid, bg = c.leftMid },
-  TelescopePromptTitle = { fg = c.mediumBlue },
-  TelescopePromptCounter = { fg = c.gray },
-  TelescopeSelection = { fg = c.fg, bg = c.popupHighlightBlue },
-  TelescopeMultiSelection = { fg = c.fg, bg = c.popupHighlightBlue },
-  TelescopeMatching = { fg = c.mediumBlue, style = 'bold' },
-  TelescopeResultsBorder = { fg = c.leftDark, bg = c.leftDark },
-  TelescopeResultsTitle = { fg = c.gray },
-  TelescopePreviewNormal = { fg = c.fg, bg = c.leftDark },
-  TelescopePreviewBorder = { fg = c.blue, bg = c.leftDark },
-  TelescopePreviewTitle = { fg = c.gray },
+  TelescopePromptPrefix = { fg = p.lightBlue },
+  TelescopePromptNormal = { fg = p.fg, bg = p.leftMid },
+  TelescopePromptBorder = { fg = p.leftMid, bg = p.leftMid },
+  TelescopePromptTitle = { fg = p.mediumBlue },
+  TelescopePromptCounter = { fg = p.gray },
+  TelescopeSelection = { fg = p.fg, bg = p.popupHighlightBlue },
+  TelescopeMultiSelection = { fg = p.fg, bg = p.popupHighlightBlue },
+  TelescopeMatching = { fg = p.mediumBlue, style = 'bold' },
+  TelescopeResultsBorder = { fg = p.leftDark, bg = p.leftDark },
+  TelescopeResultsTitle = { fg = p.gray },
+  TelescopePreviewNormal = { fg = p.fg, bg = p.leftDark },
+  TelescopePreviewBorder = { fg = p.blue, bg = p.leftDark },
+  TelescopePreviewTitle = { fg = p.gray },
 }
 
 -- kyazdani42/nvim-tree.lua
 M.nvimTree = {
-  NvimTreeNormal = { fg = c.fg, bg = c.leftDark },
-  NvimTreeCursorLine = { bg = c.leftMid },
-  NvimTreeVertSplit = { fg = c.bg, bg = c.bg },
-  NvimTreeEndOfBuffer = { fg = c.leftDark },
+  NvimTreeNormal = { fg = p.fg, bg = p.leftDark },
+  NvimTreeCursorLine = { bg = p.leftMid },
+  NvimTreeVertSplit = { fg = p.bg, bg = p.bg },
+  NvimTreeEndOfBuffer = { fg = p.leftDark },
   -- NvimTreeSymlink = { 'Fg' },
-  NvimTreeFolderName = { fg = c.fg },
-  NvimTreeRootFolder = { fg = c.fg, style = 'bold' },
+  NvimTreeFolderName = { fg = p.fg },
+  NvimTreeRootFolder = { fg = p.fg, style = 'bold' },
   -- NvimTreeFolderIcon = { 'Blue' },
-  NvimTreeEmptyFolderName = { fg = c.gray },
-  NvimTreeOpenedFolderName = { fg = c.fg },
-  NvimTreeExecFile = { fg = c.blueGreen },
+  NvimTreeEmptyFolderName = { fg = p.gray },
+  NvimTreeOpenedFolderName = { fg = p.fg },
+  NvimTreeExecFile = { fg = p.blueGreen },
   -- NvimTreeOpenedFile = { 'Fg' },
-  NvimTreeSpecialFile = { fg = c.pink },
-  NvimTreeImageFile = { fg = c.violet },
-  NvimTreeMarkdownFile = { fg = c.yellow, style = 'underline' },
-  NvimTreeIndentMarker = { fg = c.context },
-  NvimTreeGitDirty = { fg = c.yellow },
+  NvimTreeSpecialFile = { fg = p.pink },
+  NvimTreeImageFile = { fg = p.violet },
+  NvimTreeMarkdownFile = { fg = p.yellow, style = 'underline' },
+  NvimTreeIndentMarker = { fg = p.context },
+  NvimTreeGitDirty = { fg = p.yellow },
   -- NvimTreeGitStaged = { 'Blue' },
   -- NvimTreeGitMerge = { 'Cyan' },
   -- NvimTreeGitRenamed = { 'Purple' },
-  NvimTreeGitNew = { fg = c.green },
+  NvimTreeGitNew = { fg = p.green },
   -- NvimTreeGitDeleted = { 'Red' },
   -- NvimTreeLspDiagnosticsError = { 'RedSign' },
   -- NvimTreeLspDiagnosticsWarning = { 'YellowSign' },
@@ -406,45 +458,45 @@ M.nvimTree = {
 
 -- lewis6991/gitsigns.nvim
 M.gitsigns = {
-  GitSignsAdd = { fg = c.green },
-  GitSignsChange = { fg = c.blue },
-  GitSignsDelete = { fg = c.red },
+  GitSignsAdd = { fg = p.green },
+  GitSignsChange = { fg = p.blue },
+  GitSignsDelete = { fg = p.red },
   -- GitSignsAddNr            = { fg = c.bg, bg = c.green },
   -- GitSignsChangeNr         = { fg = c.bg, bg = c.blue },
   -- GitSignsDeleteNr         = { fg = c.bg, bg = c.red },
-  GitSignsAddLn = { fg = c.bg, bg = c.green },
-  GitSignsChangeLn = { fg = c.bg, bg = c.blue },
-  GitSignsDeleteLn = { fg = c.bg, bg = c.red },
+  GitSignsAddLn = { fg = p.bg, bg = p.green },
+  GitSignsChangeLn = { fg = p.bg, bg = p.blue },
+  GitSignsDeleteLn = { fg = p.bg, bg = p.red },
   -- GitSignsCurrentLineBlame = { fg = c.green },
 }
 
 -- folke/which-key.nvim
 M.whichkey = {
   -- WhichKey          = { fg = c.mediumBlue },
-  WhichKeySeperator = { fg = c.green },
-  WhichKeyGroup = { fg = c.pink },
-  WhichKeyDesc = { fg = c.blue },
+  WhichKeySeperator = { fg = p.green },
+  WhichKeyGroup = { fg = p.pink },
+  WhichKeyDesc = { fg = p.blue },
   -- WhichKeyFloat = { 'NormalFloat' },
   -- WhichKeyValue = { 'Comment' },
 }
 
 -- rcarriga/nvim-notify
 M.notify = {
-  NotifyERRORBorder = { fg = c.red },
-  NotifyERRORIcon = { fg = c.red },
-  NotifyERRORTitle = { fg = c.red },
-  NotifyWARNBorder = { fg = c.yellow },
-  NotifyWARNIcon = { fg = c.yellow },
-  NotifyWARNTitle = { fg = c.yellow },
-  NotifyINFOBorder = { fg = c.green },
-  NotifyINFOIcon = { fg = c.green },
-  NotifyINFOTitle = { fg = c.green },
-  NotifyDEBUGBorder = { fg = c.gray },
-  NotifyDEBUGIcon = { fg = c.gray },
-  NotifyDEBUGTitle = { fg = c.gray },
-  NotifyTRACEBorder = { fg = c.pink },
-  NotifyTRACEIcon = { fg = c.pink },
-  NotifyTRACETitle = { fg = c.pink },
+  NotifyERRORBorder = { fg = c.notify.error },
+  NotifyERRORIcon = { fg = c.notify.error },
+  NotifyERRORTitle = { fg = c.notify.error },
+  NotifyWARNBorder = { fg = c.notify.warn },
+  NotifyWARNIcon = { fg = c.notify.warn },
+  NotifyWARNTitle = { fg = c.notify.warn },
+  NotifyINFOBorder = { fg = c.notify.info },
+  NotifyINFOIcon = { fg = c.notify.info },
+  NotifyINFOTitle = { fg = c.notify.info },
+  NotifyDEBUGBorder = { fg = c.notify.debug },
+  NotifyDEBUGIcon = { fg = c.notify.debug },
+  NotifyDEBUGTitle = { fg = c.notify.debug },
+  NotifyTRACEBorder = { fg = c.notify.trace },
+  NotifyTRACEIcon = { fg = c.notify.trace },
+  NotifyTRACETitle = { fg = c.notify.trace },
   NotifyERRORBody = { 'Normal' },
   NotifyWARNBody = { 'Normal' },
   NotifyINFOBody = { 'Normal' },
@@ -454,33 +506,33 @@ M.notify = {
 
 -- indentBlankLine
 M.indentline = {
-  IndentBlanklineContextChar = { fg = c.contextCurrent, style = 'nocombine' },
-  IndentBlanklineContextStart = { fg = c.contextCurrent, style = 'nocombine' },
-  IndentBlanklineChar = { fg = c.context, style = 'nocombine' },
-  IndentBlanklineSpaceChar = { fg = c.context, style = 'nocombine' },
-  IndentBlanklineSpaceCharBlankline = { fg = c.context, style = 'nocombine' },
+  IndentBlanklineContextChar = { fg = p.contextCurrent, style = 'nocombine' },
+  IndentBlanklineContextStart = { fg = p.contextCurrent, style = 'nocombine' },
+  IndentBlanklineChar = { fg = p.context, style = 'nocombine' },
+  IndentBlanklineSpaceChar = { fg = p.context, style = 'nocombine' },
+  IndentBlanklineSpaceCharBlankline = { fg = p.context, style = 'nocombine' },
 }
 
 -- p00f/nvim-ts-rainbow
 M.rainbow = {
-  rainbowcol1 = { fg = c.fg },
-  rainbowcol2 = { fg = c.lightBlue },
-  rainbowcol3 = { fg = c.violet },
-  rainbowcol4 = { fg = c.blueGreen },
-  rainbowcol5 = { fg = c.yellow },
-  rainbowcol6 = { fg = c.orange },
-  rainbowcol7 = { fg = c.pink },
+  rainbowcol1 = { fg = p.fg },
+  rainbowcol2 = { fg = p.lightBlue },
+  rainbowcol3 = { fg = p.violet },
+  rainbowcol4 = { fg = p.blueGreen },
+  rainbowcol5 = { fg = p.yellow },
+  rainbowcol6 = { fg = p.orange },
+  rainbowcol7 = { fg = p.pink },
 }
 
 M.neogit = {
-  NeogitNotificationInfo = { fg = c.green },
-  NeogitNotificationWarning = { fg = c.yellow },
-  NeogitNotificationError = { fg = c.red },
+  NeogitNotificationInfo = { fg = p.green },
+  NeogitNotificationWarning = { fg = p.yellow },
+  NeogitNotificationError = { fg = p.red },
   NeogitDiffAddHighlight = { 'DiffAdd' },
   NeogitDiffDeleteHighlight = { 'DiffDelete' },
-  NeogitDiffContextHighlight = { fg = c.none, bg = c.popupHighlightGray }, --guibg=#333333 guifg=#b2b2b2
-  NeogitHunkHeader = { fg = c.fg, bg = c.context }, --guifg=#cccccc guibg=#404040
-  NeogitHunkHeaderHighlight = { fg = c.fg, bg = c.contextCurrent }, --guifg=#cccccc guibg=#4d4d4d
+  NeogitDiffContextHighlight = { fg = p.none, bg = p.popupHighlightGray }, --guibg=#333333 guifg=#b2b2b2
+  NeogitHunkHeader = { fg = p.fg, bg = p.context }, --guifg=#cccccc guibg=#404040
+  NeogitHunkHeaderHighlight = { fg = p.fg, bg = p.contextCurrent }, --guifg=#cccccc guibg=#4d4d4d
 }
 
 -- vim-illuminate
@@ -489,53 +541,36 @@ M.illumate = {
   -- illuminatedCurWord = {}
 }
 
--- barbar.nvim
-local barbar = {
-  fg_target = c.red,
-  fg_current = c.tabFg,
-  fg_visible = c.fg,
-  fg_inactive = c.tabInactiveFg,
-
-  fg_modified = c.orange,
-  fg_special = c.blue,
-  fg_subtle = c.tabInactiveFg,
-
-  bg_fill = c.tabOutside,
-  bg_current = c.tabCurrent,
-  bg_visible = c.tabOther,
-  bg_inactive = c.tabOther,
-}
-
 M.barbar = {
-  BufferCurrent = { fg = barbar.fg_current, bg = barbar.bg_current },
-  BufferCurrentIndex = { fg = barbar.fg_special, bg = barbar.bg_current },
-  BufferCurrentMod = { fg = barbar.fg_modified, bg = barbar.bg_current },
-  BufferCurrentSign = { fg = barbar.fg_special, bg = barbar.bg_current },
-  BufferCurrentTarget = { fg = barbar.fg_target, bg = barbar.bg_current },
-  BufferVisible = { fg = barbar.fg_visible, bg = barbar.bg_visible },
-  BufferVisibleIndex = { fg = barbar.fg_visible, bg = barbar.bg_visible },
-  BufferVisibleMod = { fg = barbar.fg_modified, bg = barbar.bg_visible },
-  BufferVisibleSign = { fg = barbar.fg_visible, bg = barbar.bg_visible },
-  BufferVisibleTarget = { fg = barbar.fg_target, bg = barbar.bg_visible },
-  BufferInactive = { fg = barbar.fg_inactive, bg = barbar.bg_inactive },
-  BufferInactiveIndex = { fg = barbar.fg_subtle, bg = barbar.bg_inactive },
-  BufferInactiveMod = { fg = barbar.fg_modified, bg = barbar.bg_inactive },
-  BufferInactiveSign = { fg = barbar.fg_inactive, bg = barbar.bg_inactive },
-  BufferInactiveTarget = { fg = barbar.fg_target, bg = barbar.bg_inactive },
-  BufferTabpages = { fg = barbar.fg_special, bg = barbar.bg_fill, style = 'bold' },
-  BufferTabpageFill = { fg = barbar.bg_fill, bg = barbar.bg_fill },
+  BufferCurrent = { fg = c.tab.fg, bg = c.tab.bgCurrent },
+  BufferCurrentIndex = { fg = c.tab.sign, bg = c.tab.bgCurrent },
+  BufferCurrentMod = { fg = c.tab.modified, bg = c.tab.bgCurrent },
+  BufferCurrentSign = { fg = c.tab.sign, bg = c.tab.bgCurrent },
+  BufferCurrentTarget = { fg = c.tab.indicator, bg = c.tab.bgCurrent },
+  BufferVisible = { fg = c.tab.fgVisible, bg = c.tab.bgVisible },
+  BufferVisibleIndex = { fg = c.tab.fgVisible, bg = c.tab.bgVisible },
+  BufferVisibleMod = { fg = c.tab.modified, bg = c.tab.bgVisible },
+  BufferVisibleSign = { fg = c.tab.fgVisible, bg = c.tab.bgVisible },
+  BufferVisibleTarget = { fg = c.tab.indicator, bg = c.tab.bgVisible },
+  BufferInactive = { fg = c.tab.fgInactive, bg = c.tab.bgInactive },
+  BufferInactiveIndex = { fg = c.tab.fgInactive, bg = c.tab.bgInactive },
+  BufferInactiveMod = { fg = c.tab.modified, bg = c.tab.bgInactive },
+  BufferInactiveSign = { fg = c.tab.fgInactive, bg = c.tab.bgInactive },
+  BufferInactiveTarget = { fg = c.tab.indicator, bg = c.tab.bgInactive },
+  BufferTabpages = { fg = c.tab.sign, bg = c.tab.bgFill, style = 'bold' },
+  BufferTabpageFill = { fg = c.tab.bgFill, bg = c.tab.bgFill },
+  BufferOffset = { fg = c.tab.sign, bg = c.tab.bgFill },
 
   BufferCurrentIcon = { 'BufferCurrent' },
   BufferVisibleIcon = { 'BufferVisible' },
   BufferInactiveIcon = { 'BufferInactive' },
-  BufferOffset = { 'BufferTabpageFill' },
 }
 
 -- stevearc/aerial.nvim
 M.aerial = {
-  AerialLine = { bg = c.popupHighlightBlue },
-  AerialLineNC = { bg = c.popupHighlightGray },
-  AerialGuide = { fg = c.gray },
+  AerialLine = { bg = p.popupHighlightBlue },
+  AerialLineNC = { bg = p.popupHighlightGray },
+  AerialGuide = { fg = p.gray },
 }
 
 -- TODO: below
