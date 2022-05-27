@@ -97,7 +97,7 @@ M.builtin = {
   VertSplit = { fg = p.splitDark, bg = p.bg }, -- Column separating vertically split window
   -- WinSeparator = { 'VertSplit' } -- separators between window split
 
-  Folded = { fg = p.fg, bg = p.folded },
+  Folded = { fg = p.gray, bg = p.folded },
   FoldColumn = { fg = p.lineNumber },
   SignColumn = { fg = p.fg, bg = p.bg },
   IncSearch = { fg = p.none, bg = p.searchCurrent },
@@ -525,9 +525,9 @@ M.rainbow = {
 }
 
 M.neogit = {
-  NeogitNotificationInfo = { fg = p.green },
-  NeogitNotificationWarning = { fg = p.yellow },
-  NeogitNotificationError = { fg = p.red },
+  NeogitNotificationInfo = { fg = c.notify.info },
+  NeogitNotificationWarning = { fg = c.notify.warn },
+  NeogitNotificationError = { fg = c.notify.error },
   NeogitDiffAddHighlight = { 'DiffAdd' },
   NeogitDiffDeleteHighlight = { 'DiffDelete' },
   NeogitDiffContextHighlight = { fg = p.none, bg = p.popupHighlightGray }, --guibg=#333333 guifg=#b2b2b2
